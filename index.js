@@ -13,7 +13,6 @@ const express = require('express');
 
 
 const app = express();
-const ip = '45.166.188.99';
 const port = 3000; // Ou a porta que você desejar
 
 let perfil = '3r';
@@ -162,7 +161,7 @@ console.log(dataFormatada);
 
 
 async function abrirNavegador() {
-  const downloadPath = `C:/Users/natha/Downloads/3r/3r`
+  const downloadPath = `./downloads`
   const browser = await puppeteer.launch({
       headless: false,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -272,7 +271,7 @@ async function abrirNavegador() {
     await page.click ('#BUTTON1')
     new Promise(r => setTimeout(r, 10000)); 
 
-
+    return response.json({mensage: 'Arquivos baixados'});
     // Aguardar o download concluir
        
   } else {
@@ -313,9 +312,7 @@ function prompt(question) {
 
 // Iniciar o servidor
 
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
-});
+app.listen(port);
 
 
 

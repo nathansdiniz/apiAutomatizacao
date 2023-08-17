@@ -2,7 +2,7 @@ const fs = require('fs');
 const { slice } = require('lodash');
 const path = require('path');
 const conexao = require('./mysql')
-const pasta = 'C:/Users/natha/Downloads/3r/3r';
+const pasta = './downloads';
 const formatoDesejado = '.ret'; // Substitua pelo formato desejado, como '.txt', '.csv', '.json', etc.
 
 
