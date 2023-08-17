@@ -233,6 +233,7 @@ async function abrirNavegador() {
           if (imagem) {
             // Faça o download do arquivo
             imagem.click();
+            new Promise(r => setTimeout(r, 30000)); 
             return true;
           }
         }
@@ -245,6 +246,7 @@ async function abrirNavegador() {
   if (valorEncontrado) {
     console.log('Valor encontrado na tabela e imagem clicada.');
     new Promise(r => setTimeout(r, 30000)); 
+    await page.waitForNavigation({ waitUntil: 'networkidle0' });
     const lerArquivoRet = require('./teste');
     
 
