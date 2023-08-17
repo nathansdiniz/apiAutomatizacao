@@ -161,7 +161,7 @@ console.log(dataFormatada);
 
 
 async function abrirNavegador() {
-  const downloadPath = `./downloads`
+  const downloadPath = `/home/ubuntu/download`
   const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -271,7 +271,6 @@ async function abrirNavegador() {
     await page.click ('#BUTTON1')
     new Promise(r => setTimeout(r, 10000)); 
 
-    return response.json({mensage: 'Arquivos baixados'});
     // Aguardar o download concluir
        
   } else {
