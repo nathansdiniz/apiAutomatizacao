@@ -163,7 +163,7 @@ console.log(dataFormatada);
 async function abrirNavegador() {
   const downloadPath = `./downloads`
   const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
       
