@@ -169,7 +169,7 @@ async function abrirNavegador() {
       
       
       const page = await browser.newPage();
-      await page.setDefaultNavigationTimeout(80000);
+      await page.setDefaultNavigationTimeout(50000);
       const client = await page.target().createCDPSession()
       await client.send("Page.setDownloadBehavior", {
         defaultViewport: null,
@@ -244,9 +244,8 @@ async function abrirNavegador() {
 
   if (valorEncontrado) {
     console.log('Valor encontrado na tabela e imagem clicada.');
-    setTimeout(function() {
-      const lerArquivoRet = require('./teste')
-    }, 30000);
+    new Promise(r => setTimeout(r, 30000)); 
+    const lerArquivoRet = require('./teste');
     
 
     await page.goto('https://sgcp.redepromotiva.com.br/portal/wpgerararqcsv.aspx')
