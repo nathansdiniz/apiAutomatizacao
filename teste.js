@@ -20,10 +20,22 @@ const lerArquivoRet = fs.readdir(pasta, (err, arquivos) => {
       return;
     }
     
-    const arquivoMaisRecente = arquivosNoFormatoDesejado.pop();;
+    const arquivoMaisRecente = arquivosNoFormatoDesejado.pop();
     console.log(arquivoMaisRecente);
     const caminhoArquivo = path.join(pasta, arquivoMaisRecente);
-  
+    // Ler a lista de valores na próxima execução
+    let valoresArmazenados = [];
+    valoresArmazenados = lerValoresDoArquivo();
+
+    if (valoresArmazenados.includes(arquivoMaisRecente)){
+        throw new Error('PROCESSO JÁ EXECUTADO.');
+    }
+    // Adicionar o novo valor à lista no arquivo
+    adicionarValorAoArquivo(arquivoMaisRecente);
+
+    
+    console.log('Valores armazenados:', valoresArmazenados);
+    
     fs.readFile(caminhoArquivo, 'utf8', (err, conteudo) => {
         if (err) {
             console.error('Erro ao ler o arquivo:', err);
@@ -98,7 +110,8 @@ const lerArquivoRet = fs.readdir(pasta, (err, arquivos) => {
 
         conexao.query(query, dadosSeparados , (err, results, fields) => {
              if (err) throw err;
-            console.log('Resultados da consulta:', results);});
+             adicionarValorAoArquivo(arquivoMaisRecente);
+             console.log('Resultados da consulta:', results);});
     };
     });
 });
@@ -108,20 +121,21 @@ module.exports = lerArquivoRet;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Função para adicionar um valor à lista de valores no arquivo
+function adicionarValorAoArquivo(novoValor) {
+        try {
+            const valoresAnteriores = lerValoresDoArquivo();
+            const valoresAtualizados = [...valoresAnteriores, novoValor];
+            fs.writeFileSync('meus_valores.txt', valoresAtualizados.join(','));
+        } catch (error) {console.error('Erro ao adicionar valor:', error); }
+}
+    // Função para ler a lista de valores do arquivo
+function lerValoresDoArquivo() {
+        try {const conteudo = fs.readFileSync('meus_valores.txt', 'utf8');
+            if (conteudo) { return conteudo.split(',');
+            } else { return [];}
+        } catch (error) { return []; }
+ }
 
 
 function CBF801(){

@@ -4,6 +4,7 @@ const moment = require('moment');
 const puppeteer = require("puppeteer");
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const cors = require('cors');
 
 
 const secretKey = crypto.randomBytes(32).toString('hex');
@@ -14,6 +15,13 @@ const express = require('express');
 
 const app = express();
 const port = 3000; // Ou a porta que você desejar
+
+// Configuração do CORS
+app.use(cors({
+  origin: ['https://signabrasil.com.br', 'https://editor.wix.com/'], // Defina a origem permitida (domínio do Wix Velo)
+  methods: 'GET, POST, OPTIONS', // Métodos permitidos
+  allowedHeaders: 'Content-Type', // Headers permitidos
+}));
 
 let perfil = '3r';
 let pass;
@@ -60,6 +68,7 @@ const verifyToken = (req, res, next) => {
 app.get('/',  (req, res) => {
     // Acesso autorizado, continue processando a solicitação
   res.json({ message: 'Acesso autorizado à rota protegida' });
+  res.status(200).send('Iniciando execução...');
   const hoje = moment();
   let ontem = moment().subtract(1, 'days');
   console.log(hoje.year());
@@ -80,6 +89,7 @@ app.get('/',  (req, res) => {
 
   // Verifica se a data é segunda-feira
   console.log(hoje.format('dddd'));
+  res.status(200).send('Iniciando download dos arquivos...');
   if(hoje.format(formatoDesejado) != datasComemorativas){
       if (hoje.format('dddd') === 'Monday') {
         // Pega a data anterior da sexta-feira
@@ -163,7 +173,7 @@ console.log(dataFormatada);
 async function abrirNavegador() {
   const downloadPath = `./downloads`
   const browser = await puppeteer.launch({
-      headless: true,
+      headless: "new",
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
       
