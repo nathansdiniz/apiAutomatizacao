@@ -4,7 +4,6 @@ const moment = require('moment');
 const puppeteer = require("puppeteer");
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const cors = require('cors');
 
 
 const secretKey = crypto.randomBytes(32).toString('hex');
@@ -16,12 +15,7 @@ const express = require('express');
 const app = express();
 const port = 3000; // Ou a porta que você desejar
 
-// Configuração do CORS
-app.use(cors({
-  origin: ['https://signabrasil.com.br', 'https://editor.wix.com/'], // Defina a origem permitida (domínio do Wix Velo)
-  methods: 'GET, POST, OPTIONS', // Métodos permitidos
-  allowedHeaders: 'Content-Type', // Headers permitidos
-}));
+
 
 let perfil = '3r';
 let pass;
