@@ -13,7 +13,7 @@ const express = require('express');
 
 
 const app = express();
-const port = 3333; // Ou a porta que você desejar
+const port = 3000; // Ou a porta que você desejar
 
 let perfil = '3r';
 let pass;
