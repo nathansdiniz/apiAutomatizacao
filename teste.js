@@ -109,7 +109,7 @@ const lerArquivoRet = fs.readdir(pasta, (err, arquivos) => {
         const query = 'INSERT INTO credito (Tipo, Banco, DataTransacao, Agencia, ChaveOperador, SequenciaOperador, CodigoTransacao, DataMovimentacao, HoraMovimentacao, Valor, Loja, PDV, FormLiquidacao, SituacaoDoc, RetornoCorrespondente, Linha, Convenio, Proposta, TipoLiberacao, Parcelas, PropostaVinc, Troco) VALUES (?)';
 
         conexao.query(query, dadosSeparados , (err, results, fields) => {
-             if (err) throw err;
+             if (err) return null;
              adicionarValorAoArquivo(arquivoMaisRecente);
              console.log('Resultados da consulta:', results);});
     };
