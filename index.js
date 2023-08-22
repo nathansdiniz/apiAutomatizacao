@@ -17,12 +17,12 @@ const { verificarUsuario } = require('./servidor');
 const app = express();
 const port = 3000; // Ou a porta que você desejar
 
-// Configuração do CORS
-app.use(cors({
-  origin: ['https://signabrasil.com.br', 'https://editor.wix.com/'], // Defina a origem permitida (domínio do Wix Velo)
-  methods: 'GET, POST, OPTIONS', // Métodos permitidos
-  allowedHeaders: 'Content-Type', // Headers permitidos
-}));
+const corsOptions = {
+  origin: ['https://signabrasil.com.br', 'https://editor.wix.com/', 'https://editor.wix.com/html/editor/web/renderer/edit/db21b74b-d6a5-4871-a09c-fa0c0b34ff23?metaSiteId=9b814312-5145-429c-89fc-2b3764c4403b'],
+  optionsSuccessStatus: 200 // Algumas versões do CORS exigem esse status explícito
+};
+
+app.use(cors(corsOptions));
 
 let perfil = '3r';
 let pass;
