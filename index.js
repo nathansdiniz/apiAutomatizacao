@@ -18,26 +18,26 @@ const app = express();
 const port = 3000; // Ou a porta que você desejar
 
 const corsOptions = {
-  origin: ['https://signabrasil.com.br', 'https://editor.wix.com/', 'https://editor.wix.com/html/editor/web/renderer/edit/db21b74b-d6a5-4871-a09c-fa0c0b34ff23?metaSiteId=9b814312-5145-429c-89fc-2b3764c4403b'],
+  origin: ['https://signabrasil.com.br'],
   optionsSuccessStatus: 200 // Algumas versões do CORS exigem esse status explícito
 };
 
 app.use(cors(corsOptions));
 
-let perfil = '3r';
+let perfil = 1;
 let pass;
 switch (perfil){
-  case "3r":
-    perfil = "3r.producao";
-    pass = '3r$igna2k22';
+  case 1:
+    perfil = "producao1";
+    pass = 'Senha';
     break;
-  case "ficasa":
-    perfil = "3r.producao";
-    pass = '3r$igna2k22';
+  case 2:
+   perfil = "producao2";
+    pass = 'Senha2';
     break;
-  case "invest":
-    perfil = "3r.producao";
-    pass = '3r$igna2k22';
+  case 3:
+   perfil = "producao3";
+    pass = 'Senha3';
     break;
   default:
     perfil = null;
@@ -203,8 +203,8 @@ async function abrirNavegador() {
           //const password = prompt('Insira sua senha:');
       
           // Preencher os campos de login
-          document.querySelector('[name="vLOGIN"]').value = '3r.producao';
-          document.querySelector('[name="vSENHA"]').value = '3r$igna2k22';
+          document.querySelector('[name="vLOGIN"]').value = perfil;
+          document.querySelector('[name="vSENHA"]').value = pass;
       
           // Submeter o formulário de login
           document.querySelector('#ENTER').click();
