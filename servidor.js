@@ -17,11 +17,12 @@ function connection() {
     var db = require('postgresql-query');
 
     db.config({
-        username: 'dw_signa',
-        password: 'dw$sgn2k22',
-        host: 'dw_signa.postgresql.dbaas.com.br',
-        port: '5432',
-        database: 'dw_signa'
+        username: 'TESTE',
+       host: 'localhost',
+        port: 3308,
+        user:'root',
+        password : '',
+        database: 'testesigna',
     });
 
     return db;
